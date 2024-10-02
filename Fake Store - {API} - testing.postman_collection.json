@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "20be89e0-d6be-47ce-be2d-11d510befa03",
+		"name": "US  2906 | TS 1 | Fake Store | {API} | Acceder, Crear, Actualizar, Modificar, Eliminar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36581690"
+	},
+	"item": [
+		{
+			"name": "US  2906 | TS 1 | Como usuario, quiero poder gestionar productos en una tienda de e-commerce para mejorar la experiencia de compra.",
+			"item": [
+				{
+					"name": "US  2906 | TC#1 | Validar acceso  a la lista de productos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lista de productos deberia estar disponible\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "US  2906 | TC#2 | Validar obtener producto por \"id\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Deberia contener los detalles del producto\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"    pm.expect(jsonData.id).to.eql(17);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/{{\"id\"}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"{{\"id\"}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "US  2906 | TC#3 | Validar crear un nuevo producto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El nuevo producto debería estar creado en la lista de productos\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.title).to.eql(\"Classic Slip-On Checkerboard Shoe\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"title\": \"Classic Slip-On Checkerboard Shoe\",\r\n    \"price\": 60.00,\r\n    \"description\": \"The Slip-On that’s been Setting Trends Since 1979; What started life in 1979 as the Vans #98 has become one of the most popular shoes in Southern California, and one of the most instantly recognizable shoes in the world\",\r\n    \"image\": \"https://fakestoreapi.com/img/Vans/VN000EYE_BWW_HERO?wid=800&hei=1004&fmt=jpeg&qlt=50&resMode=sharp2&op_usm=0.9,1.5,8,0\",\r\n    \"category\": \"shoes\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "US  2906 | TC#4 | Validar actualizar un producto existente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El producto actualizado debería mostrar los nuevos detalles\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id', 10);\r",
+									"    pm.expect(jsonData.title).to.eql(\"KingSpec 1TB 2.5-inch SATA SSD, SATA III 6Gb/s Internal Solid State Drive - 3D NAND Flash TLC, for Desktop, Laptop, All-in-One (P3,1TB)\");\r",
+									"    pm.expect(jsonData.price).to.eql(62.99);\r",
+									"    pm.expect(jsonData.description).to.include(\"KingSpec SATA SSD with read speeds of up to 550 MB/s, fast for booting, loading, and transferring data. Reliability and stability: The SATA SSD adopts 3D NAND TLC, with a mean time between failures (MTBF) of up to 1 million hours. Shock-resistant, vibration-resistant, and reduces noise interference.\");\r",
+									"    pm.expect(jsonData.image).to.eql(\"https://fakestoreapi.com/img/S/aplus-media-listing-9987d58c66de.__CR0,0,970,600_PT0_SX970_V1___.jpg\");\r",
+									"    pm.expect(jsonData.category).to.eql(\"electronics\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 10,\r\n  \"title\": \"KingSpec 1TB 2.5-inch SATA SSD, SATA III 6Gb/s Internal Solid State Drive - 3D NAND Flash TLC, for Desktop, Laptop, All-in-One (P3,1TB)\",\r\n  \"price\": 62.99,\r\n  \"description\": \"KingSpec SATA SSD with read speeds of up to 550 MB/s, fast for booting, loading, and transferring data. Reliability and stability: The SATA SSD adopts 3D NAND TLC, with a mean time between failures (MTBF) of up to 1 million hours. Shock-resistant, vibration-resistant, and reduces noise interference.\",\r\n  \"image\": \"https://fakestoreapi.com/img/S/aplus-media-listing-9987d58c66de.__CR0,0,970,600_PT0_SX970_V1___.jpg\",\r\n  \"category\": \"electronics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/products/{{\"id_update\"}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"{{\"id_update\"}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "US  2906 | TC#5 | Verificar que un producto se elimina correctamente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Debería eliminar producto por id\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"    pm.expect(jsonData.id).to.eql(5);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/{{\"id_delete\"}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"{{\"id_delete\"}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.test(\"Deberia dar un 200\", function () {\r",
+					"    pm.response.to.have.status(200);\r",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://fakestoreapi.com",
+			"type": "string"
+		},
+		{
+			"key": "\"id\"",
+			"value": "https://fakestoreapi.com/products/17",
+			"type": "string"
+		},
+		{
+			"key": "\"id_update\"",
+			"value": "https://fakestoreapi.com/products/10",
+			"type": "string"
+		},
+		{
+			"key": "\"id_delete\"",
+			"value": "https://fakestoreapi.com/products/5",
+			"type": "string"
+		}
+	]
+}
