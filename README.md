@@ -17,6 +17,6 @@ Este repositorio contiene una colección de pruebas con Postman para realizar op
 - **US 2906 | TC#4**: Validar actualizar un producto existente.
 - **US 2906 | TC#5**: Verificar que un producto se elimina correctamente.
 
----
+--
 
 [Visita mi perfil de LinkedIn](https://www.linkedin.com/in/leandro-guiza-cortes-579b612ab/)
