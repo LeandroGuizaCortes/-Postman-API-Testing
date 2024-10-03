@@ -7,7 +7,7 @@ Este repositorio contiene una colección de pruebas con Postman para realizar op
 
 ## US 2906 | TS 1 | Fake Store | {API} | Acceder, Crear, Actualizar, Modificar, Eliminar
 
-**Historia de Usuario**
+## Historia de Usuario
 
 **US 2906 | TS 1 | Como usuario, quiero poder gestionar productos en una tienda de e-commerce para mejorar la experiencia de compra.**  
 
