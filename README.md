@@ -9,7 +9,7 @@ Este repositorio contiene una colección de pruebas con Postman para realizar op
 
 ##Historia de Usuario
 
-**  US  2906 | TS 1 | Como usuario, quiero poder gestionar productos en una tienda de e-commerce para mejorar la experiencia de compra.**  
+**US 2906 | TS 1 | Como usuario, quiero poder gestionar productos en una tienda de e-commerce para mejorar la experiencia de compra.**  
 
 ## Casos de Prueba
 
